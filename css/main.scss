@@ -1,0 +1,590 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap");
+@use "sass:map";
+// Variables
+$colors: (
+  "main": #1b4ed4,
+  "dark-main": darken(#1b4ed4, 10),
+  "link-hover": #f1587e,
+);
+@mixin grid($val) {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax($val, 1fr));
+  gap: 1.5rem;
+}
+
+* {
+  font-family: "Poppins", sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+// constants
+.container {
+  padding: 2rem 9%;
+}
+a {
+  text-decoration: none;
+}
+
+.header {
+  position: sticky;
+  z-index: 1000;
+  top: 0;
+  right: 0;
+  left: 0;
+  background-color: map-get($colors, "main");
+  padding: 0 9%;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  a {
+    color: #fff;
+    text-decoration: none;
+  }
+  .header__brand {
+    font : {
+      size: 1.2rem;
+      weight: 500;
+    }
+    i {
+      color: #ff3c88;
+    }
+  }
+  .nav__button {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.1s linear;
+    &:hover {
+      background-color: map-get($colors, "dark-main");
+    }
+    i {
+      color: #fff;
+      font-size: 1.5rem;
+      cursor: pointer;
+      padding: 1rem;
+    }
+  }
+  .nav {
+    position: relative;
+    .nav__list {
+      display: flex;
+      list-style: none;
+      align-items: center;
+      position: relative;
+      .nav__list-item {
+        position: relative;
+        &:hover .nav__sublist {
+          visibility: visible;
+          opacity: 1;
+          margin-top: 0rem;
+        }
+        .nav__list-link {
+          color: #fff;
+          padding: 1rem;
+          display: block;
+          transition: all 0.1s linear;
+          &:hover {
+            background-color: darken(map-get($colors, "main"), 10);
+          }
+        }
+      }
+      .nav__sublist {
+        box-shadow: 0 10px 100px -25px map-get($colors, "main");
+        position: absolute;
+        background-color: #1b4ed4;
+        list-style: none;
+        padding: 1rem;
+        visibility: hidden;
+        opacity: 0;
+        margin-top: 1rem;
+        transition: all 0.1s linear;
+        border-radius: 0 0 0.3rem 0.3rem;
+        width: max-content;
+        left: -5rem;
+        .nav__subitem {
+          .nav__sublink {
+            padding: 0.2rem 1.5rem;
+            display: block;
+            transition: all 0.1s linear;
+            border-radius: 0.2rem;
+            &:hover {
+              background-color: darken(map-get($colors, "main"), 11);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.footer {
+  .footer__container {
+    @include grid(15rem);
+    padding: 2.5rem 9%;
+    .footer__unit {
+      display: flex;
+      flex-direction: column;
+      row-gap: 1rem;
+      .footer__title {
+      }
+      .footer__link {
+        text-decoration: none;
+        transition: all 0.1s linear;
+        &:hover {
+          margin-left: 0.25rem;
+          color: map-get($colors, "link-hover");
+        }
+      }
+    }
+  }
+  .footer__credit {
+    border-top: 1px solid gray;
+    padding: 1rem 5rem;
+    .footer__text {
+      text-align: center;
+      font : {
+        size: 1.1rem;
+      }
+      span {
+        color: map-get($colors, "link-hover");
+      }
+    }
+  }
+}
+
+.home {
+  .home__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    padding: 2rem 9%;
+    .home__imagebox {
+      .home__image {
+        width: 100%;
+        min-width: 560px;
+      }
+    }
+    .home__content {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: start;
+      row-gap: 1rem;
+      .home__title {
+        font : {
+          size: 2.5rem;
+          weight: 600;
+        }
+      }
+      .home__text {
+        font-size: 1rem;
+      }
+      .home__link {
+        text-decoration: none;
+        color: map-get($colors, "main");
+        padding: 1rem;
+        border-radius: 0.5rem;
+        transition: all 0.1s linear;
+        font : {
+          size: 1.2rem;
+          weight: 500;
+        }
+        border: 1px solid transparent;
+        &:hover {
+          border: 1px solid map-get($colors, "main");
+        }
+      }
+    }
+  }
+}
+
+.cats {
+  .cats__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    .cats__unit {
+      text-align: center;
+      border: 1px solid transparent;
+      min-width: 150px;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      transition: all 0.1s linear;
+      .cats__image {
+        height: 70px;
+      }
+      .cats__title {
+        margin-top: 1rem;
+        font : {
+          size: 1rem;
+          weight: 600;
+        }
+      }
+      &:hover {
+        // border:1px solid map-get($map: $colors, $key:'main' );
+        box-shadow: 0 0px 35px 5px #1b4ed433;
+      }
+    }
+  }
+}
+
+.about {
+  .about__content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+    .about__image {
+      flex: 1 1 500px;
+      img {
+        width: 100%;
+      }
+    }
+    .about__info {
+      flex: 1 1 400px;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      .about__title {
+        font : {
+          size: 2.5rem;
+          weight: 700;
+        }
+      }
+      .about__link {
+        padding: 1rem;
+        border: 1px solid transparent;
+        border-radius: 0.5rem;
+        transition: all 0.1s linear;
+        text-align: center;
+        width: max-content;
+        &:hover {
+          border: 1px solid map-get($colors, "main");
+        }
+      }
+    }
+  }
+}
+
+.courses {
+  .courses__container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+    align-content: space-between;
+    row-gap: 2rem;
+    margin: 2rem;
+    .course {
+      flex: 1 1 300px;
+      text-align: center;
+      .course__image {
+        margin-bottom: 0.7rem;
+      }
+      .course__title {
+        margin-bottom: 0.7rem;
+      }
+      .course__caption {
+        padding: 1rem;
+        margin-bottom: 0.7rem;
+      }
+      .course__link {
+        padding: 0.7rem 1.2rem;
+        border-radius: 0.5rem;
+        border: 1px solid transparent;
+        transition: all 0.1s linear;
+        &:hover {
+          border: 1px solid map-get($colors, "main");
+        }
+      }
+    }
+  }
+}
+
+.courses-two {
+  .courses-two__container {
+    display: flex;
+    justify-content: space-between;
+    align-content: space-between;
+    flex-flow: row wrap;
+    gap: 2rem 1rem;
+    .course-two {
+      flex: 1 1 300px;
+      max-width: fit-content;
+      padding: 1rem;
+      position: relative;
+      .course-two__imagebox {
+        height: 200px;
+        text-align: center;
+        .course-two__image {
+          height: 100%;
+        }
+      }
+      .course-two__cat {
+        display: block;
+        text-align: left;
+        color: map-get($colors, "main");
+        margin-bottom: 1rem;
+      }
+      .course-two__title {
+        margin-bottom: 1rem;
+        font : {
+          size: 1.5rem;
+          weight: 700;
+        }
+      }
+      .course-two__caption {
+        font : {
+          size: 1rem;
+          weight: 400;
+        }
+        margin-bottom: 1rem;
+        line-height: 2.5rem;
+      }
+      .course-two__link {
+        padding: 1rem;
+        border-radius: 0.5rem;
+        border: 1px solid transparent;
+        margin-bottom: 1rem;
+        display: block;
+        width: max-content;
+        transition: all 0.1s linear;
+        &:hover {
+          border: 1px solid map-get($colors, "main");
+        }
+      }
+      .course-two__info {
+        display: flex;
+        justify-content: space-between;
+        i {
+          color: map-get($colors, "link-hover");
+        }
+      }
+    }
+  }
+}
+
+.courses-three {
+  .courses-three__container {
+    @include grid(21rem);
+    gap: 2rem;
+    .course-three {
+      text-align: center;
+      &:hover .course-three__video video {
+        transform: scale(1.1);
+      }
+      &:hover .course-three__play {
+        visibility: visible;
+        opacity: 1;
+      }
+      .course-three__video {
+        margin-bottom: 0.7rem;
+        position: relative;
+        height: 12.5rem;
+        overflow: hidden;
+        border-radius: 0.7rem;
+        video {
+          cursor: pointer;
+          transition: all 0.1s linear;
+          height: 100%;
+        }
+      }
+      .course-three__title {
+        margin-bottom: 0.7rem;
+      }
+      .course-three__author {
+        color: gray;
+      }
+      .course-three__play {
+        visibility: hidden;
+        opacity: 0;
+        transition: all 0.1s linear;
+        background-color: #fff;
+        width: 50px;
+        height: 50px;
+        text-align: center;
+        border-radius: 0.5rem;
+        position: absolute;
+        cursor: pointer;
+        top: calc(50% - 25px);
+        left: calc(50% - 25px);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+  }
+}
+
+.main-vid {
+  position: fixed;
+  z-index: 9999;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  .main-vid__close {
+    font-size: 5rem;
+    color: #fff;
+    position: absolute;
+    top: 1rem;
+    right: 3rem;
+    cursor: pointer;
+  }
+  .main-vid__video {
+    margin: 5rem;
+    max-height: 65%;
+    overflow: hidden;
+    border-radius: 0.5rem;
+  }
+}
+.show-main-vid {
+  display: flex;
+}
+
+.teachers {
+  .teachers__container {
+    @include grid(15rem);
+    gap : 1rem;
+    .teacher {
+      text-align : center;
+      &:hover .teacher__socials{
+        visibility: visible !important;
+        height: 100% !important;
+      }
+      .teacher__image {
+        overflow: hidden;
+        border-radius : .5rem;
+        position: relative;
+        .teacher__socials {
+          position: absolute;
+          background-color :rgba(0, 0, 0, 0.5);
+          top:0;
+          right : 0;
+          bottom : 0;
+          left : 0;
+          display: flex;
+          justify-content: space-evenly;
+          align-items: flex-end;
+          padding : 1rem;
+          visibility: hidden;
+          height: 0;
+          transition : all .1s linear;
+          .teacher__social {
+            color : #fff;
+            font-size : 1.5rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+.blog {
+  .blog__container {
+    @include grid(18.75rem);
+
+    .article {
+      text-align: center;
+      .article__image {
+        margin-bottom: 1rem;
+        img {
+          width: 100%;
+        }
+      }
+      .article__info {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 1rem;
+        i {
+          color : map-get($colors, 'main');
+          margin-right: .5rem;
+        }
+
+      }
+      .article__caption {
+        font-size : 1rem;
+        margin-bottom: 1rem;
+      }
+      .article__link {
+        padding: .5rem 1rem;
+        border-radius : .3rem;
+        border : 1px solid transparent;
+        transition : all .05s linear;
+        display: block;
+        text-align: center;
+        &:hover {
+          border : 1px solid map-get($colors, 'main');
+          background-color: map-get($colors, 'main');
+          color : #fff;
+        }
+      }
+    }
+  }
+}
+
+
+
+.contact {
+  .contact__container {
+    .infobox {
+      margin: 5rem 0;
+      display: flex;
+      justify-content: space-between;
+      flex-flow : row wrap;
+      .info {
+        text-align: center;
+        flex : 1 1 280px;
+        margin : 2rem 0;
+        .info__icon {
+          font-size : 2rem;
+          color : map-get($colors, 'main');
+        }
+      }
+    }
+    .contactbox {
+      display: flex;
+      justify-content: space-between;
+      gap: 2rem;
+      flex-flow : row wrap;
+      .contact-form {
+        flex : 1 2 400px;
+        padding : 3rem;
+        .contact-form__input {
+          width : 100%;
+          border : none;
+          border-bottom: 1px solid transparent;
+          padding : 1rem;
+          outline : none;
+          &:focus {
+            border-bottom : 1px solid map-get($colors, 'main');
+          }
+        }
+        .contact-form__send {
+          margin-top: .5rem;
+          padding : .5rem 1rem;
+          display: block;
+          width : max-content;
+        }
+      }
+      .contact-map {
+        flex : 1 1 400px;
+      }
+    }
+  }
+}
+
+
+@import "responsive.scss";
